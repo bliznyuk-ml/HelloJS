@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multiplication Table</title>
+    <style>
+        button {
+            background-color: cornflowerblue;
+            border-radius: 10px;
+            font-size: 2rem;
+            width: 30%;
+            min-width: 400px;
+            line-height: 5rem;
+            color: whitesmoke;
+            box-shadow: darkblue 5px 5px 10px;
+        }
+
+        button:active {
+            transform: translate(0em, 0.15em);
+            box-shadow: darkblue 1px 1px 5px;
+        }
+
+        button:hover {
+            background-color: dodgerblue;
+        }
+
+        .create {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .clear {
+            float: left;
+        }
+
+        body {
+            background-image: url("icons/blackboard.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+
+        td {
+            color: whitesmoke;
+            font-size: 2em;
+            font-family: sans-serif;
+            text-align: left;
+            padding: 5px 20px;
+        }
+
+        .table {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+<div class="create">
+    <button onClick="myFunction()">Create Multiplication Table</button>
+    <!--    <button onclick="clearTable()">Clear blackboard</button>-->
+</div>
+
+<div id="table" class="table"></div>
+
+<script>
+    function myFunction() {
+        let row = 0;
+        let col = 0;
+        do {
+            row = prompt("Enter the number of rows less then 10:", "");
+            if (row > 10) {
+                alert("Number greater, than 10");
+            }
+            col = prompt("Enter the number of columns less then 10:", "");
+            if (col > 10) {
+                alert("Number greater, than 10");
+            }
+        } while (row > 10 || col > 10)
+        let table = document.querySelector('#table');
+        createTable(table, row, col);
+    }
+
+    function clearTable() {
+        let tro = document.getElementsByTagName("tr");
+        //tr.parentNode.removeChild(tr);
+    }
+
+    function createTable(parent, row, col) {
+        let table = document.createElement('table')
+        for (let i = 1; i <= row; i++) {
+            let tr = document.createElement('tr');
+            for (let j = 1; j <= col; j++) {
+                let td = document.createElement('td');
+                td.textContent = j + "*" + i + "=" + i * j;
+                tr.appendChild(td);
+            }
+            table.appendChild(tr);
+        }
+        parent.appendChild(table);
+    }
+</script>
+</body>
+</html>
